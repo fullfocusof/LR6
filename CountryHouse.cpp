@@ -29,14 +29,19 @@ void CountryHouse::printProp()
 
 void CountryHouse::fromJson(json json)
 {
-	this->distanceFromCity = json.at("distanceFromCity");
-	this->setWorth(json.at("worth"));
+	nlohmann::json j = json["CountryHouse"].get<nlohmann::json>();
+	this->distanceFromCity = j["distanceFromCity"].get<int>();
+	this->setWorth(j["worth"].get<int>());
 }
 
 json CountryHouse::toJson()
 {
-	return
-	{
+	int tax = this->propertyTax();
 
+	nlohmann::json j =
+	{
+		{"CountryHouse", {{"tax", tax}}}
 	};
+
+	return j;
 }

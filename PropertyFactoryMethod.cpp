@@ -6,15 +6,15 @@ Property* PropertyFactoryMethod::getProperty(string key)
 
 	if (key == "Appartment")
 	{
-		prop = new Appartment;
+		prop = new Appartment(0,0);
 	}
 	else if (key == "Car")
 	{
-		prop = new Car;
+		prop = new Car(0, 0);
 	}
 	else if (key == "CountryHouse")
 	{
-		prop = new CountryHouse;
+		prop = new CountryHouse(0, 0);
 	}
 
 	return prop;

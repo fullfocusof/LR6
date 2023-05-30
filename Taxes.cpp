@@ -11,19 +11,31 @@ int main()
 	setlocale(LC_ALL, "ru");
 
 	vector <Owner> mainVec;
-
+	
 	ifstream fin("Owners.json");
 	if (!fin) throw exception("error");
 
 	json j;
 	j = json::parse(fin);
 
-	mainVec.resize(j.size());
+	for (auto elem : j)
+	{
+		Owner o;
+		o.fromJson(elem);
+		mainVec.push_back(o);
+	}
+
+	ofstream ofs("OwnersWrite.json");
+
+	json jwrite = json::array();
 
 	for (int i = 0; i < mainVec.size(); i++)
 	{
-		Owner().fromJson(j);
+		json jOwner = mainVec[i].toJson();
+		jwrite.push_back(jOwner);
 	}
+
+	ofs << jwrite.dump(4);
 
 	vector<string> menu = { "Добавить собственника", "Удалить собственника", "Добавить имущество", "Удалить имущество", "Просмотр собственников", "Подсчет налогов", "Подсчет налогов (общий)", "Выход" };
 	int active_menu = 0;

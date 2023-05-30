@@ -1,0 +1,164 @@
+[
+    {
+        "fullname": "Abramov M.V.",
+        "inn": "947568776827",
+        "sumtax": 122507,
+        "taxs": [
+            {
+                "Appartment": {
+                    "tax": 3499
+                }
+            },
+            {
+                "Appartment": {
+                    "tax": 110000
+                }
+            },
+            {
+                "Car": {
+                    "tax": 209
+                }
+            },
+            {
+                "CountryHouse": {
+                    "tax": 8799
+                }
+            }
+        ]
+    },
+    {
+        "fullname": "Ivanova N.A.",
+        "inn": "862568149009",
+        "sumtax": 97150,
+        "taxs": [
+            {
+                "Appartment": {
+                    "tax": 2200
+                }
+            },
+            {
+                "Car": {
+                    "tax": 3150
+                }
+            },
+            {
+                "Car": {
+                    "tax": 24300
+                }
+            },
+            {
+                "CountryHouse": {
+                    "tax": 67500
+                }
+            }
+        ]
+    },
+    {
+        "fullname": "Petrov I.A.",
+        "inn": "108464856991",
+        "sumtax": 1299199,
+        "taxs": [
+            {
+                "Appartment": {
+                    "tax": 39200
+                }
+            },
+            {
+                "Car": {
+                    "tax": 810000
+                }
+            },
+            {
+                "CountryHouse": {
+                    "tax": 150000
+                }
+            },
+            {
+                "CountryHouse": {
+                    "tax": 299999
+                }
+            }
+        ]
+    },
+    {
+        "fullname": "Kuznetsov V.S.",
+        "inn": "755642060878",
+        "sumtax": 202500,
+        "taxs": [
+            {
+                "Appartment": {
+                    "tax": 100000
+                }
+            },
+            {
+                "Appartment": {
+                    "tax": 2000
+                }
+            },
+            {
+                "Car": {
+                    "tax": 94500
+                }
+            },
+            {
+                "CountryHouse": {
+                    "tax": 6000
+                }
+            }
+        ]
+    },
+    {
+        "fullname": "Sidorov O.V.",
+        "inn": "661316220908",
+        "sumtax": 36077,
+        "taxs": [
+            {
+                "Appartment": {
+                    "tax": 3499
+                }
+            },
+            {
+                "Car": {
+                    "tax": 14769
+                }
+            },
+            {
+                "Car": {
+                    "tax": 15309
+                }
+            },
+            {
+                "CountryHouse": {
+                    "tax": 2500
+                }
+            }
+        ]
+    },
+    {
+        "fullname": "Rochev Y.A.",
+        "inn": "241234068504",
+        "sumtax": 1390400,
+        "taxs": [
+            {
+                "Appartment": {
+                    "tax": 28000
+                }
+            },
+            {
+                "Car": {
+                    "tax": 1350000
+                }
+            },
+            {
+                "CountryHouse": {
+                    "tax": 8900
+                }
+            },
+            {
+                "CountryHouse": {
+                    "tax": 3500
+                }
+            }
+        ]
+    }
+]

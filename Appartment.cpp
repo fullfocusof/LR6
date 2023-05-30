@@ -7,7 +7,7 @@ Appartment::Appartment(unsigned int worth, double square): Property(worth)
 
 Appartment::Appartment()
 {
-	this->square;
+	this->square = 0;
 }
 
 int Appartment::propertyTax()
@@ -29,14 +29,19 @@ void Appartment::printProp()
 
 void Appartment::fromJson(json json)
 {
-	this->square = json.at("square");
-	this->setWorth(json.at("worth"));
+	nlohmann::json j = json["Appartment"].get<nlohmann::json>();
+	setWorth(j["worth"].get<int>());	
+	square = j["square"].get<double>();
 }
 
 json Appartment::toJson()
 {
-	return
-	{
+	int tax = this->propertyTax();
 
+	nlohmann::json j =
+	{ 
+		{"Appartment", {{"tax", tax}}  }
 	};
+
+	return j;
 }

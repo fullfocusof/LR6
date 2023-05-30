@@ -61,30 +61,46 @@ unsigned int Owner::sumWorth()
 
 void Owner::fromJson(json json)
 {
-	this->fullname = json.at("fullname");
-	this->INN = json.at("inn");
-	auto props = json.at("properties").get<vector<Property>>();
-
-	for (auto& prop : props)
+	fullname = json["fullname"].get<std::string>();
+	this->INN = json["inn"].get<std::string>();
+	auto json_props = json["properties"].get<vector<nlohmann::json>>();
+	for (auto& json_prop : json_props)
 	{
-		string key = prop.items().begin().key();
-		Property* prop = PropertyFactoryMethod::getProperty(key);
-		prop->fromJson(json.at("key"));
-		this->addProperty(prop);
+		string key = json_prop.items().begin().key();
+		Property* propobj = PropertyFactoryMethod::getProperty(key);
+		propobj->fromJson(json_prop);
+		this->addProperty(propobj);
 	}
 }
 
 json Owner::toJson()
 {
-	return json();
+	int sumtax = 0;
+
+	for (int i = 0; i < properties.size(); i++)
+	{
+		sumtax += properties[i]->propertyTax();
+	}
+
+	nlohmann::json j =
+	{
+		{"fullname" , this->fullname},
+		{"inn", this->INN},
+		{"sumtax", sumtax},
+		{"taxs", json::array()}
+	};
+
+	for (int i = 0; i < properties.size(); i++)
+	{
+		j["taxs"].push_back(this->properties[i]->toJson());
+	}
+
+	return j;
 }
 
 Owner::~Owner()
 {
-	for (int i = 0; i < this->properties.size(); i++)
-	{
-		delete this->properties[i];
-	}
+
 }
 
 void GoToXY(short x, short y)

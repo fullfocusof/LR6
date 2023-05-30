@@ -36,14 +36,19 @@ void Car::printProp()
 
 void Car::fromJson(json json)
 {
-	this->horsepower = json.at("horsepower");
-	this->setWorth(json.at("worth"));
+	nlohmann::json j = json["Car"].get<nlohmann::json>();
+	this->horsepower = j["horsepower"].get<int>();
+	this->setWorth(j["worth"].get<int>());
 }
 
 json Car::toJson()
 {
-	return
-	{
+	int tax = this->propertyTax();
 
+	nlohmann::json j =
+	{
+		{"Car", {{"tax", tax}}}
 	};
+
+	return j;
 }
