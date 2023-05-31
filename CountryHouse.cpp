@@ -45,3 +45,14 @@ json CountryHouse::toJson()
 
 	return j;
 }
+
+void CountryHouse::fromXML(xml_node xmlCH)
+{
+	this->distanceFromCity = xmlCH.child("CountryHouse").child("distanceFromCity").text().as_double();
+	this->setWorth(xmlCH.child("CountryHouse").child("worth").text().as_int());
+}
+
+xml_document CountryHouse::toXML()
+{
+	return xml_document();
+}

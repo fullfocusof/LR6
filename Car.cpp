@@ -52,3 +52,14 @@ json Car::toJson()
 
 	return j;
 }
+
+void Car::fromXML(xml_node xmlCar)
+{
+	this->horsepower = xmlCar.child("Car").child("horsepower").text().as_double();
+	this->setWorth(xmlCar.child("Car").child("worth").text().as_int());
+}
+
+xml_document Car::toXML()
+{
+	return xml_document();
+}

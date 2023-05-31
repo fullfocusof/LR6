@@ -7,7 +7,7 @@
 #define KEY_ESC 27
 #define KEY_BACKSPACE 8
 
-class Owner : public Ijsonio
+class Owner : public Ijsonio, public Ixmlio
 {
 	string fullname;
 	string INN;
@@ -28,6 +28,9 @@ public:
 
 	void fromJson(json json) override;
 	json toJson() override;
+
+	void fromXML(xml_node xmlOwner) override;
+	xml_document toXML() override;
 
 	~Owner();
 };

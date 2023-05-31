@@ -63,6 +63,7 @@ void Owner::fromJson(json json)
 {
 	fullname = json["fullname"].get<std::string>();
 	this->INN = json["inn"].get<std::string>();
+
 	auto json_props = json["properties"].get<vector<nlohmann::json>>();
 	for (auto& json_prop : json_props)
 	{
@@ -96,6 +97,25 @@ json Owner::toJson()
 	}
 
 	return j;
+}
+
+void Owner::fromXML(xml_node xmlOwner)
+{
+	this->fullname = xmlOwner.child("fullname").text().as_string();
+	this->INN = xmlOwner.child("inn").text().as_string();
+	
+	for (xml_node propertyNode = xmlOwner.child("properties"); propertyNode; propertyNode = propertyNode.next_sibling("properties"))
+	{
+		string key = propertyNode.name();
+		Property* propobj = PropertyFactoryMethod::getProperty(key);
+		propobj->fromXML(propertyNode);
+		this->addProperty(propobj);
+	}
+}
+
+xml_document Owner::toXML()
+{
+	return xml_document();
 }
 
 Owner::~Owner()

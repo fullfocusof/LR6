@@ -1,5 +1,6 @@
 #pragma once
 #include "Ijsonio.h"
+#include "Ixmlio.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -29,7 +30,7 @@ namespace TAX_RATES
 using namespace TAX_RATES;
 using namespace std;
 
-class Property : public Ijsonio
+class Property : public Ijsonio, public Ixmlio
 {
 	unsigned int worth;
 

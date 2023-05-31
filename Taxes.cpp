@@ -4,38 +4,75 @@
 #include "CountryHouse.h"
 #include "Owner.h"
 
-int main()
+int main(int argc, char* argv[])
 {
 	SetConsoleTitle(L"Налоги");
 	ConsoleCursorVisible(false, 100);
 	setlocale(LC_ALL, "ru");
 
 	vector <Owner> mainVec;
-	
-	ifstream fin("Owners.json");
-	if (!fin) throw exception("error");
 
-	json j;
-	j = json::parse(fin);
-
-	for (auto elem : j)
+	if (argc != 3) 
 	{
-		Owner o;
-		o.fromJson(elem);
-		mainVec.push_back(o);
+		cerr << "Неправильный ввод для " << argv[0] << endl << "Правильное использование аргументов: "  << endl << argv[0] << " input_file output_file" << endl;
+		return 1;
 	}
 
-	ofstream ofs("OwnersWrite.json");
+	const char* input_filename = argv[1];
+	const char* output_filename = argv[2];
 
-	json jwrite = json::array();
-
-	for (int i = 0; i < mainVec.size(); i++)
+	xml_document docInput;
+	ifstream ifs(input_filename);
+	if (!ifs) throw exception("ErrorOpenFileInput");
+	if (docInput.load_file(input_filename))
 	{
-		json jOwner = mainVec[i].toJson();
-		jwrite.push_back(jOwner);
-	}
+		xml_parse_result result = docInput.load_file(input_filename);
+		if (!result) throw exception("ErrorParseXml");
 
-	ofs << jwrite.dump(4);
+		xml_node root = docInput.child("root");
+
+		for (xml_node OwnerNode = root.child("Owner"); OwnerNode; OwnerNode = OwnerNode.next_sibling("Owner"))
+		{
+			Owner o;
+			o.fromXML(OwnerNode);
+			mainVec.push_back(o);
+		}
+	}
+	else
+	{
+		json j;
+		j = json::parse(ifs);
+
+		for (auto elem : j)
+		{
+			Owner o;
+			o.fromJson(elem);
+			mainVec.push_back(o);
+		}
+	}
+	ifs.close();
+
+
+	xml_document docOutput;
+	ofstream ofs(output_filename);
+	if (!ofs) throw exception("ErrorOpenFileOutput");
+	if (docOutput.load_file(output_filename))
+	{
+
+	}
+	else
+	{
+		json jwrite = json::array();
+
+		for (int i = 0; i < mainVec.size(); i++)
+		{
+			json jOwner = mainVec[i].toJson();
+			jwrite.push_back(jOwner);
+		}
+
+		ofs << jwrite.dump(4);
+	}
+	ofs.close();
 
 	vector<string> menu = { "Добавить собственника", "Удалить собственника", "Добавить имущество", "Удалить имущество", "Просмотр собственников", "Подсчет налогов", "Подсчет налогов (общий)", "Выход" };
 	int active_menu = 0;

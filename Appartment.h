@@ -16,4 +16,7 @@ public:
 
 	void fromJson(json json) override;
 	json toJson() override;
+
+	void fromXML(xml_node xmlApp) override;
+	xml_document toXML() override;
 };
