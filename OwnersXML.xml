@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+	<Owner fullname="Abramov M.V." inn="947568776827">
+		<properties>
+			<Appartment square="98.5" worth="3499999" />
+			<Appartment square="346.1" worth="27500000" />
+			<Car horsepower="98" worth="299000" />
+			<CountryHouse distanceFromCity="20" worth="8799000" />
+		</properties>
+	</Owner>
+	<Owner fullname="Ivanova N.A." inn="862568149009">
+		<properties>
+			<Appartment square="55.7" worth="2200000" />
+			<Car horsepower="151" worth="450000" />
+			<Car horsepower="500" worth="900000" />
+			<CountryHouse distanceFromCity="38" worth="6750000" />
+		</properties>
+	</Owner>
+	<Owner fullname="Petrov I.A." inn="108464856991">
+		<properties>
+			<Appartment square="120.3" worth="9800000" />
+			<Car horsepower="1200" worth="30000000" />
+			<CountryHouse distanceFromCity="50" worth="15000000" />
+			<CountryHouse distanceFromCity="67" worth="29999999" />
+		</properties>
+	</Owner>
+	<Owner fullname="Kuznetsov V.S." inn="755642060878">
+		<properties>
+			<Appartment square="600" worth="25000000" />
+			<Appartment square="50" worth="2000000" />
+			<Car horsepower="612" worth="3500000" />
+			<CountryHouse distanceFromCity="5" worth="6000000" />
+		</properties>
+	</Owner>
+	<Owner fullname="Sidorov O.V." inn="661316220908">
+		<properties>
+			<Appartment square="98.5" worth="3499999" />
+			<Car horsepower="399" worth="547000" />
+			<Car horsepower="257" worth="567000" />
+			<CountryHouse distanceFromCity="90" worth="250000" />
+		</properties>
+	</Owner>
+	<Owner fullname="Rochev Y.A." inn="241234068504">
+		<properties>
+			<Appartment square="150" worth="7000000" />
+			<Car horsepower="450" worth="50000000" />
+			<CountryHouse distanceFromCity="3" worth="8900000" />
+			<CountryHouse distanceFromCity="15" worth="3500000" />
+		</properties>
+	</Owner>
+	<Owner fullname="Sergeeva L.N." inn="164963533980">
+		<properties>
+			<Appartment square="37.7" worth="2499999" />
+			<Appartment square="87.3" worth="3600000" />
+			<Car horsepower="115" worth="400000" />
+			<CountryHouse distanceFromCity="50" worth="8590000" />
+		</properties>
+	</Owner>
+	<Owner fullname="Belova N.V." inn="419394494082">
+		<properties>
+			<Appartment square="117.5" worth="6565655" />
+			<Car horsepower="400" worth="6000000" />
+			<Car horsepower="350" worth="3000000" />
+			<CountryHouse distanceFromCity="4.5" worth="5455455" />
+		</properties>
+	</Owner>
+	<Owner fullname="Koshkina O.I." inn="457008008328">
+		<properties>
+			<Appartment square="75.5" worth="3553555" />
+			<Car horsepower="150" worth="680000" />
+			<CountryHouse distanceFromCity="434" worth="150000" />
+			<CountryHouse distanceFromCity="35" worth="900000" />
+		</properties>
+	</Owner>
+	<Owner fullname="Fadeeva E.G." inn="159019184338">
+		<properties>
+			<Appartment square="666" worth="35675899" />
+			<Car horsepower="1200" worth="35000000" />
+			<CountryHouse distanceFromCity="1" worth="25000000" />
+		</properties>
+	</Owner>
+</root>

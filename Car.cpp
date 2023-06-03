@@ -55,11 +55,16 @@ json Car::toJson()
 
 void Car::fromXML(xml_node xmlCar)
 {
-	this->horsepower = xmlCar.child("Car").child("horsepower").text().as_double();
-	this->setWorth(xmlCar.child("Car").child("worth").text().as_int());
+	this->horsepower = xmlCar.attribute("horsepower").as_double();
+	this->setWorth(xmlCar.attribute("worth").as_uint());
 }
 
 xml_document Car::toXML()
 {
-	return xml_document();
+	xml_document doc;
+
+	xml_node AppNode = doc.append_child("Car");
+	AppNode.append_attribute("tax").set_value(this->propertyTax());
+
+	return doc;
 }

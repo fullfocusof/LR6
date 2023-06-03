@@ -101,10 +101,11 @@ json Owner::toJson()
 
 void Owner::fromXML(xml_node xmlOwner)
 {
-	this->fullname = xmlOwner.child("fullname").text().as_string();
-	this->INN = xmlOwner.child("inn").text().as_string();
-	
-	for (xml_node propertyNode = xmlOwner.child("properties"); propertyNode; propertyNode = propertyNode.next_sibling("properties"))
+	this->fullname = xmlOwner.attribute("fullname").as_string();
+	this->INN = xmlOwner.attribute("inn").as_string();
+
+	xml_node propertiesNode = xmlOwner.child("properties");
+	for (xml_node propertyNode = propertiesNode.first_child(); propertyNode; propertyNode = propertyNode.next_sibling())
 	{
 		string key = propertyNode.name();
 		Property* propobj = PropertyFactoryMethod::getProperty(key);
@@ -115,7 +116,20 @@ void Owner::fromXML(xml_node xmlOwner)
 
 xml_document Owner::toXML()
 {
-	return xml_document();
+	xml_document doc;
+
+	xml_node OwnerNode = doc.append_child("Owner");
+	OwnerNode.append_attribute("fullname").set_value(this->fullname.c_str());
+	OwnerNode.append_attribute("inn").set_value(this->INN.c_str());
+
+	xml_node TaxsNode = OwnerNode.append_child("Taxs");
+	for (int i = 0; i < this->properties.size(); i++)
+	{
+		xml_document propDoc = this->properties[i]->toXML();
+		TaxsNode.append_copy(propDoc.first_child());
+	}
+
+	return doc;
 }
 
 Owner::~Owner()

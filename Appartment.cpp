@@ -48,11 +48,16 @@ json Appartment::toJson()
 
 void Appartment::fromXML(xml_node xmlApp)
 {
-	this->square = xmlApp.child("Appartment").child("square").text().as_double();
-	this->setWorth(xmlApp.child("Appartment").child("worth").text().as_int());
+	this->square = xmlApp.attribute("square").as_double();
+	this->setWorth(xmlApp.attribute("worth").as_uint());
 }
 
 xml_document Appartment::toXML()
 {
-	return xml_document();
+	xml_document doc;
+
+	xml_node AppNode = doc.append_child("Appartment");
+	AppNode.append_attribute("tax").set_value(this->propertyTax());
+
+	return doc;
 }

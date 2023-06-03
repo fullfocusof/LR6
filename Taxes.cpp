@@ -14,18 +14,29 @@ int main(int argc, char* argv[])
 
 	if (argc != 3) 
 	{
-		cerr << "Неправильный ввод для " << argv[0] << endl << "Правильное использование аргументов: "  << endl << argv[0] << " input_file output_file" << endl;
+		cerr << "неправильный ввод для " << argv[0] << endl << "правильное использование аргументов: "  << endl << argv[0] << " input_file output_file" << endl;
 		return 1;
 	}
 
 	const char* input_filename = argv[1];
 	const char* output_filename = argv[2];
 
-	xml_document docInput;
+	string extensionInputFile = strrchr(input_filename, '.');
+	if (!extensionInputFile.empty()) 
+	{
+		extensionInputFile = extensionInputFile.substr(1);
+	}
+	string extensionOutputFile = strrchr(output_filename, '.');
+	if (!extensionOutputFile.empty()) 
+	{
+		extensionOutputFile = extensionOutputFile.substr(1);
+	}
+
 	ifstream ifs(input_filename);
 	if (!ifs) throw exception("ErrorOpenFileInput");
-	if (docInput.load_file(input_filename))
+	if (extensionInputFile == "xml")
 	{
+		xml_document docInput;
 		xml_parse_result result = docInput.load_file(input_filename);
 		if (!result) throw exception("ErrorParseXml");
 
@@ -53,12 +64,25 @@ int main(int argc, char* argv[])
 	ifs.close();
 
 
-	xml_document docOutput;
 	ofstream ofs(output_filename);
 	if (!ofs) throw exception("ErrorOpenFileOutput");
-	if (docOutput.load_file(output_filename))
+	if (extensionOutputFile == "xml")
 	{
+		xml_document docOutput;
 
+		xml_node decl = docOutput.prepend_child(node_declaration);
+		decl.append_attribute("version") = "1.0";
+		decl.append_attribute("encoding") = "UTF-8";
+
+		xml_node root = docOutput.append_child("root");
+
+		for (int i = 0; i < mainVec.size(); i++)
+		{
+			xml_document OwnerDoc = mainVec[i].toXML();
+			xml_node OwnerNode = root.append_copy(OwnerDoc.first_child());
+		}
+
+		docOutput.save(ofs);
 	}
 	else
 	{
@@ -73,6 +97,7 @@ int main(int argc, char* argv[])
 		ofs << jwrite.dump(4);
 	}
 	ofs.close();
+
 
 	vector<string> menu = { "Добавить собственника", "Удалить собственника", "Добавить имущество", "Удалить имущество", "Просмотр собственников", "Подсчет налогов", "Подсчет налогов (общий)", "Выход" };
 	int active_menu = 0;

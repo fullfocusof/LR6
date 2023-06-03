@@ -48,11 +48,16 @@ json CountryHouse::toJson()
 
 void CountryHouse::fromXML(xml_node xmlCH)
 {
-	this->distanceFromCity = xmlCH.child("CountryHouse").child("distanceFromCity").text().as_double();
-	this->setWorth(xmlCH.child("CountryHouse").child("worth").text().as_int());
+	this->distanceFromCity = xmlCH.attribute("distanceFromCity").as_uint();
+	this->setWorth(xmlCH.attribute("worth").as_uint());
 }
 
 xml_document CountryHouse::toXML()
 {
-	return xml_document();
+	xml_document doc;
+
+	xml_node AppNode = doc.append_child("CountryHouse");
+	AppNode.append_attribute("tax").set_value(this->propertyTax());
+
+	return doc;
 }
