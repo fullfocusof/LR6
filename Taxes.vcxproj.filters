@@ -39,7 +39,7 @@
     <ClCompile Include="PropertyFactoryMethod.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\marih\Desktop\Введение в профессию\Lib\pugixml-master\src\pugixml.cpp">
+    <ClCompile Include="..\..\Users\class\Downloads\pugixml-master\src\pugixml.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

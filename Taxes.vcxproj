@@ -42,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\marih\Desktop\Введение в профессию\Lib\pugixml-master\src;C:\Users\marih\Desktop\Введение в профессию\Lib\json-develop\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Users\class\Downloads\pugixml-master\src;D:\Users\class\Downloads\json-develop\include;C:\Users\marih\Desktop\Введение в профессию\Lib\pugixml-master\src;C:\Users\marih\Desktop\Введение в профессию\Lib\json-develop\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,8 +128,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Users\class\Downloads\pugixml-master\src\pugixml.cpp" />
     <ClCompile Include="Appartment.cpp" />
-    <ClCompile Include="C:\Users\marih\Desktop\Введение в профессию\Lib\pugixml-master\src\pugixml.cpp" />
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="CountryHouse.cpp" />
     <ClCompile Include="Ijsonio.cpp" />

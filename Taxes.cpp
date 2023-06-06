@@ -4,7 +4,9 @@
 #include "CountryHouse.h"
 #include "Owner.h"
 
-int main(int argc, char* argv[])
+//int argc, char* argv[];
+
+int main()
 {
 	SetConsoleTitle(L"Налоги");
 	ConsoleCursorVisible(false, 100);
@@ -12,14 +14,16 @@ int main(int argc, char* argv[])
 
 	vector <Owner> mainVec;
 
-	if (argc != 3) 
+	system("cls");
+
+	/*if (argc != 3) 
 	{
 		cerr << "неправильный ввод для " << argv[0] << endl << "правильное использование аргументов: "  << endl << argv[0] << " input_file output_file" << endl;
 		return 1;
-	}
+	}*/
 
-	const char* input_filename = argv[1];
-	const char* output_filename = argv[2];
+	const char* input_filename = "OwnersJson.json";
+	const char* output_filename = "OwnersWriteJson.json";
 
 	string extensionInputFile = strrchr(input_filename, '.');
 	if (!extensionInputFile.empty()) 
@@ -146,12 +150,26 @@ int main(int argc, char* argv[])
 
 			for (int i = 0; i < mainVec.size(); i++)
 			{
+				cout << i + 1 << ") ";
 				mainVec[i].getOwnerData();
+			}
+
+			if (mainVec.empty())
+			{
+				cout << "Список собственников пуст";
+
+				PrintQuit();
+				break;
 			}
 
 			cout << "Введите номер собственника, которого вы хотите удалить" << endl;
 			int num;
 			cin >> num;
+			while (num > mainVec.size() || num < 1)
+			{
+				cout << "Неверный номер" << endl;
+				cin >> num;
+			}
 
 			mainVec.erase(mainVec.begin() + num - 1);
 
@@ -168,12 +186,26 @@ int main(int argc, char* argv[])
 
 			for (int i = 0; i < mainVec.size(); i++)
 			{
+				cout << i + 1 << ") ";
 				mainVec[i].getOwnerData();
+			}
+
+			if (mainVec.empty())
+			{
+				cout << "Список собственников пуст";
+
+				PrintQuit();
+				break;
 			}
 
 			cout << "Введите номер собственника, которому вы хотите добавить имущество" << endl;
 			int num;
 			cin >> num;
+			while (num > mainVec.size() || num < 1)
+			{
+				cout << "Неверный номер" << endl;
+				cin >> num;
+			}
 
 			system("cls");
 
@@ -195,9 +227,7 @@ int main(int argc, char* argv[])
 					unsigned int worthAppart;
 					cin >> worthAppart;
 
-					Appartment kv(worthAppart, square);
-
-					mainVec[num - 1].addProperty(&kv);
+					mainVec[num - 1].addProperty(new Appartment (worthAppart, square));
 
 					cout << endl << "Данные успешно добавлены";
 
@@ -217,9 +247,7 @@ int main(int argc, char* argv[])
 					unsigned int worthCar;
 					cin >> worthCar;
 
-					Car car(worthCar, hp);
-
-					mainVec[num - 1].addProperty(&car);
+					mainVec[num - 1].addProperty(new Car(worthCar, hp));
 
 					cout << endl << "Данные успешно добавлены";
 
@@ -239,9 +267,7 @@ int main(int argc, char* argv[])
 					unsigned int worthCntryHouse;
 					cin >> worthCntryHouse;
 
-					CountryHouse CH(worthCntryHouse, distance);
-
-					mainVec[num - 1].addProperty(&CH);
+					mainVec[num - 1].addProperty(new CountryHouse (worthCntryHouse, distance));
 
 					cout << endl << "Данные успешно добавлены";
 
@@ -258,20 +284,48 @@ int main(int argc, char* argv[])
 
 			for (int i = 0; i < mainVec.size(); i++)
 			{
+				cout << i + 1 << ") ";
 				mainVec[i].getOwnerData();
+			}
+
+			if (mainVec.empty())
+			{
+				cout << "Список собственников пуст";
+
+				PrintQuit();
+				break;
 			}
 
 			cout << "Введите номер собственника, у которого вы хотите удалить имущество" << endl;
 			int num;
 			cin >> num;
+			while (num > mainVec.size() || num < 1)
+			{
+				cout << "Неверный номер" << endl;
+				cin >> num;
+			}
+
 
 			system("cls");
 
 			mainVec[num - 1].getOwnerData();
 
+			if (mainVec[num - 1].getProp().empty())
+			{
+				cout << "У собственника отсутствует имущество";
+
+				PrintQuit();
+				break;
+			}
+
 			cout << "Введите номер имущества, которое хотите удалить" << endl;
 			int numProp;
 			cin >> numProp;
+			while (numProp > mainVec[num - 1].getProp().size() || numProp < 1)
+			{
+				cout << "Неверный номер" << endl;
+				cin >> numProp;
+			}
 
 			mainVec[num - 1].delProperty(numProp);
 
@@ -288,7 +342,16 @@ int main(int argc, char* argv[])
 
 			for (int i = 0; i < mainVec.size(); i++)
 			{
+				cout << i + 1 << ") ";
 				mainVec[i].getOwnerData();
+			}
+
+			if (mainVec.empty())
+			{
+				cout << "Список собственников пуст";
+
+				PrintQuit();
+				break;
 			}
 
 			PrintQuit();
@@ -301,20 +364,47 @@ int main(int argc, char* argv[])
 
 			for (int i = 0; i < mainVec.size(); i++)
 			{
+				cout << i + 1 << ") ";
 				mainVec[i].getOwnerData();
+			}
+
+			if (mainVec.empty())
+			{
+				cout << "Список собственников пуст";
+
+				PrintQuit();
+				break;
 			}
 
 			cout << "Введите номер собственника, у которого нужно подсчитать налоги" << endl;
 			int numOwner;
 			cin >> numOwner;
+			while (numOwner > mainVec.size() || numOwner < 1)
+			{
+				cout << "Неверный номер" << endl;
+				cin >> numOwner;
+			}
 
 			system("cls");
 
 			mainVec[numOwner - 1].getOwnerData();
 
+			if (mainVec[numOwner - 1].getProp().empty())
+			{
+				cout << "У собственника отсутствует имущество";
+
+				PrintQuit();
+				break;
+			}
+
 			cout << "Выберите имущество, на которое нужно подсчитать налог" << endl;
 			int numTax;
 			cin >> numTax;
+			while (numTax > mainVec[numOwner - 1].getProp().size() || numTax < 1)
+			{
+				cout << "Неверный номер" << endl;
+				cin >> numTax;
+			}
 
 
 			cout << "Налог на имущество" << endl;
@@ -331,16 +421,39 @@ int main(int argc, char* argv[])
 
 			for (int i = 0; i < mainVec.size(); i++)
 			{
+				cout << i + 1 << ") ";
 				mainVec[i].getOwnerData();
+			}
+
+			if (mainVec.empty())
+			{
+				cout << "Список собственников пуст";
+
+				PrintQuit();
+				break;
 			}
 
 			cout << "Введите номер собственника, у которого нужно подсчитать налоги" << endl;
 			int numOwner;
 			cin >> numOwner;
+			while (numOwner > mainVec.size() || numOwner < 1)
+			{
+				cout << "Неверный номер" << endl;
+				cin >> numOwner;
+			}
+
 
 			system("cls");
 
 			mainVec[numOwner - 1].getOwnerData();
+
+			if (mainVec[numOwner - 1].getProp().empty())
+			{
+				cout << "У собственника отсутствует имущество";
+
+				PrintQuit();
+				break;
+			}
 
 			cout << "Общий налог составляет " << mainVec[numOwner - 1].sumWorth();
 
